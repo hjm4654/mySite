@@ -3,75 +3,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>환영합니다</title>
+  <title>Blackberet | 교육사업</title>
+  <meta name="description" content="Blackberet - 교육사업. 대표자 홍지민, 연락처 010-5005-6408">
   <style>
+    :root {
+      --black: #111111;
+      --ink: #1f1f1f;
+      --muted: #6b6b6b;
+      --line: #e5e5e5;
+      --bg: #fafafa;
+      --accent: #c9a24a;
+    }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
+      font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(17, 17, 17, 0.95);
+      color: #fff;
+    }
+    header .container {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-family: -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-      background: linear-gradient(135deg, #e0f2fe, #f5f3ff);
-      padding: 16px;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo { font-size: 1.35rem; font-weight: 800; letter-spacing: 0.04em; }
+    .logo span { color: var(--accent); }
+    nav { display: flex; gap: 24px; font-size: 0.95rem; }
+    nav a { opacity: 0.8; }
+    nav a:hover { opacity: 1; color: var(--accent); }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at 80% 20%, #2a2a2a, var(--black) 60%);
+      color: #fff;
+      padding: 120px 0 110px;
+    }
+    .hero .tag {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 4px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      line-height: 1.2;
+      margin: 20px 0 16px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p { font-size: 1.1rem; color: #cfcfcf; max-width: 560px; margin: 0 0 36px; }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--black);
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+    }
+    .btn:hover { filter: brightness(1.08); }
+
+    /* Sections */
+    section { padding: 90px 0; }
+    .section-title { text-align: center; margin-bottom: 48px; }
+    .section-title small { color: var(--accent); font-weight: 700; letter-spacing: 0.15em; }
+    .section-title h2 { font-size: 2rem; margin: 8px 0 0; }
+
+    .about-text { max-width: 720px; margin: 0 auto; text-align: center; color: var(--muted); font-size: 1.05rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
     }
     .card {
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      padding: 40px 32px;
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 32px 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    h1 { margin: 0 0 24px; font-size: 1.5rem; color: #1e293b; }
-    form { display: flex; gap: 8px; }
-    input {
-      flex: 1;
-      min-width: 0;
-      padding: 12px 14px;
-      font-size: 1rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-    }
-    input:focus { outline: 2px solid #6366f1; border-color: transparent; }
-    button {
-      padding: 12px 18px;
-      font-size: 1rem;
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); }
+    .card .num { color: var(--accent); font-weight: 800; font-size: 1.4rem; }
+    .card h3 { margin: 10px 0 8px; font-size: 1.2rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    #programs { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+    /* Contact */
+    .info {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--black);
       color: #fff;
-      background: #6366f1;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+      border-radius: 16px;
+      padding: 40px 36px;
     }
-    button:hover { background: #4f46e5; }
-    #greeting {
-      margin-top: 28px;
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #4338ca;
-      min-height: 1.5em;
+    .info dl { margin: 0; display: grid; grid-template-columns: 100px 1fr; row-gap: 18px; }
+    .info dt { color: var(--accent); font-weight: 700; }
+    .info dd { margin: 0; }
+    .info a:hover { color: var(--accent); }
+
+    footer {
+      background: var(--black);
+      color: #8a8a8a;
+      text-align: center;
+      padding: 28px 0;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      nav { gap: 14px; font-size: 0.85rem; }
+      .hero { padding: 80px 0 70px; }
+      section { padding: 64px 0; }
+      .info { padding: 32px 24px; }
+      .info dl { grid-template-columns: 80px 1fr; }
     }
   </style>
 </head>
 <body>
-  <main class="card">
-    <h1>이름을 입력해주세요</h1>
-    <form id="nameForm">
-      <input type="text" id="nameInput" placeholder="이름" autocomplete="name" required>
-      <button type="submit">확인</button>
-    </form>
-    <p id="greeting"></p>
-  </main>
+  <header>
+    <div class="container">
+      <a href="#" class="logo">Black<span>beret</span></a>
+      <nav>
+        <a href="#about">소개</a>
+        <a href="#programs">교육사업</a>
+        <a href="#contact">문의</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <span class="tag">EDUCATION</span>
+      <h1>배움의 기준을 세우는<br><em>Blackberet</em></h1>
+      <p>체계적인 교육과 꾸준한 관리로 한 사람 한 사람의 성장을 함께합니다.</p>
+      <a href="#contact" class="btn">상담 문의하기</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <small>ABOUT</small>
+        <h2>Blackberet 소개</h2>
+      </div>
+      <p class="about-text">
+        Blackberet는 교육사업을 하는 회사입니다.
+        학습자에게 맞는 교육 과정을 설계하고,
+        목표를 이룰 때까지 끝까지 함께하는 것을 원칙으로 합니다.
+      </p>
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="container">
+      <div class="section-title">
+        <small>BUSINESS</small>
+        <h2>교육사업 분야</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="num">01</div>
+          <h3>맞춤형 교육</h3>
+          <p>학습자의 수준과 목표를 진단해 개인별 커리큘럼을 설계합니다.</p>
+        </div>
+        <div class="card">
+          <div class="num">02</div>
+          <h3>교육 프로그램 운영</h3>
+          <p>단계별 과정을 운영하며 학습 진행 상황을 꾸준히 관리합니다.</p>
+        </div>
+        <div class="card">
+          <div class="num">03</div>
+          <h3>교육 컨설팅</h3>
+          <p>기관과 개인에게 교육 방향과 운영 방법을 함께 제안합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <small>CONTACT</small>
+        <h2>문의하기</h2>
+      </div>
+      <div class="info">
+        <dl>
+          <dt>상호</dt>
+          <dd>Blackberet</dd>
+          <dt>업종</dt>
+          <dd>교육사업</dd>
+          <dt>대표자</dt>
+          <dd>홍지민</dd>
+          <dt>연락처</dt>
+          <dd><a href="tel:01050056408">010-5005-6408</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      Blackberet · 대표자 홍지민 · 010-5005-6408<br>
+      &copy; <span id="year"></span> Blackberet. All rights reserved.
+    </div>
+  </footer>
 
   <script>
-    document.getElementById('nameForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('nameInput').value.trim();
-      document.getElementById('greeting').textContent =
-        name ? `${name} 님 어서오세요` : '';
-    });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
